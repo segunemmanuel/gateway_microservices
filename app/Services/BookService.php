@@ -1,7 +1,7 @@
 <?php
-namespace Services;
+namespace App\Services;
 
-use Traits\ConsumeExternalService;
+use App\Traits\ConsumeExternalService;
 
 class BookService
 {

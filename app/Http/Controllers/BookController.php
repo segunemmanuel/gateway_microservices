@@ -4,7 +4,7 @@ use App\Book;
 use App\Traits\ApiResponser;
 use Illuminate\Http\Response;
 use Illuminate\Http\Request;
-use Services\BookService;
+use App\Services\BookService;
 
 class BookController extends Controller
 {

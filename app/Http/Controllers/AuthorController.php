@@ -1,10 +1,12 @@
 <?php
-
 namespace App\Http\Controllers;
+
+use App\Author;
 use App\Traits\ApiResponser;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Services\AuthorService;
+use App\Services\AuthorService;
+
 
 class AuthorController extends Controller
 {
@@ -26,10 +28,7 @@ public $authorService;
      */
     public function __construct(AuthorService $authorService)
     {
-
         $this->authorService = $authorService;
-
-
     }
 
 /**
@@ -38,11 +37,9 @@ public $authorService;
 */
 public function index(){
 
-
-
-
+    // Displaying the list of authors in the author microservices 
+return $this->successResponse( $this->authorService->obtainAuthors());
 }
-
 
 /**
  * Creates a new author
@@ -50,7 +47,9 @@ public function index(){
 */ 
 
 public function store(Request $request){
+    // Saving in the author microservices
 
+    return $this->successResponse( $this->authorService->createAuthors($request->all(), Response::HTTP_CREATED ));
 
 }
 
@@ -62,6 +61,9 @@ public function store(Request $request){
 */
 
 public function show($author){
+// Displaying a single record of author 
+// return $this->successResponse($this->authorService->obtainAuthor($author);
+return $this->successResponse($this->authorService->obtainAuthor($author));
 
 
 }
@@ -74,6 +76,8 @@ public function show($author){
 
 public function update(Request $request, $author){
  
+    return $this->successResponse( $this->authorService->editAuthor($request->all(),$author));
+
 
 
 
@@ -86,7 +90,7 @@ public function update(Request $request, $author){
 */
 
 public function destroy($author){
-
+    return $this->successResponse($this->authorService->deleteAuthor($author));
 
 }
 
